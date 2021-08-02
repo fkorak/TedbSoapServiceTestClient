@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>VarTestServiceMaven</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.sun.xml.ws</groupId>
+                    <artifactId>jaxws-maven-plugin</artifactId>
+                    <version>3.0.0</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>wsimport</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <wsdlLocation>/VatRetrievalService.wsdl</wsdlLocation>
+                        <wsdlDirectory>${project.basedir}/src/main/resources/</wsdlDirectory>
+                        <packageName>com.var.soap.ws.client</packageName>
+                        <vmArgs>
+                            <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
+                        </vmArgs>
+                        <!-- needs extension true otherwise wont generate trade web service stub. Still shows error SOAP binding 1.2 -->
+                        <extension>true</extension>
+                        <sourceDestDir>
+                            ${project.build.directory}/generated-sources/
+                        </sourceDestDir>
+                    </configuration>
+                </plugin>
+            </plugins>
+    </build>
+
+
+</project>

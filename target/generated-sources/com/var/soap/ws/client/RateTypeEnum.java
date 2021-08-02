@@ -1,0 +1,37 @@
+
+package com.var.soap.ws.client;
+
+import jakarta.xml.bind.annotation.XmlEnum;
+import jakarta.xml.bind.annotation.XmlType;
+
+
+/**
+ * <p>Java class for rateTypeEnum.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * <pre>
+ * &lt;simpleType name="rateTypeEnum"&gt;
+ *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string"&gt;
+ *     &lt;enumeration value="STANDARD"/&gt;
+ *     &lt;enumeration value="REDUCED"/&gt;
+ *   &lt;/restriction&gt;
+ * &lt;/simpleType&gt;
+ * </pre>
+ * 
+ */
+@XmlType(name = "rateTypeEnum")
+@XmlEnum
+public enum RateTypeEnum {
+
+    STANDARD,
+    REDUCED;
+
+    public String value() {
+        return name();
+    }
+
+    public static RateTypeEnum fromValue(String v) {
+        return valueOf(v);
+    }
+
+}
